@@ -7,10 +7,10 @@ interface User {
   user: Testprop;
 }
 
-export default function Test({ user }: User) {
+export default function Test({ user: { name, age } }: User) {
   return (
     <div>
-      This is for testing types of typescript, {user.name} & {user.age}
+      This is for testing types of typescript, {name} & {age}
     </div>
   );
 }
