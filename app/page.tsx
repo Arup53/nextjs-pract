@@ -1,5 +1,5 @@
-import Test from "@/components/testcomponent/page";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return <div>{/* <Test user={{ name: "koi", age: 25 }} /> */}</div>;
+  redirect("/landing");
 }
