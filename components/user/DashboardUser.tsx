@@ -22,14 +22,14 @@ const items = [
     icon: Home,
   },
   {
+    title: "Apply For Card",
+    url: "/dashboard/user/applyCard",
+    icon: Calendar,
+  },
+  {
     title: "Card Details",
     url: "/dashboard/user/cardDetails",
     icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
   },
   {
     title: "Search",

@@ -1,5 +1,11 @@
+import CardDetailsUi from "@/components/user/cardDetailsUI/cardDetailsUi";
+
 const Page = () => {
-  return <div>This is card details</div>;
+  return (
+    <div>
+      <CardDetailsUi />
+    </div>
+  );
 };
 
 export default Page;
