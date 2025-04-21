@@ -7,9 +7,13 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <SidebarProvider>
-      <DashboradContent />
-      <main>{children}</main>
-    </SidebarProvider>
+    <div>
+      <SidebarProvider>
+        <DashboradContent />
+        <main className="flex justify-center items-center w-full">
+          {children}
+        </main>
+      </SidebarProvider>
+    </div>
   );
 }
