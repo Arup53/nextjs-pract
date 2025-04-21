@@ -55,6 +55,11 @@ const DetailsTable = () => {
     };
   }, []);
 
+  const handleCardStatusClick = (user: User) => {
+    console.log("Clicked user:", user.name);
+    // or navigate, show modal, etc.
+  };
+
   console.log(users);
   return (
     <div className="flex justify-center items-center  ">
@@ -73,7 +78,16 @@ const DetailsTable = () => {
             <TableRow key={user.id}>
               <TableCell className="font-medium">{user.name}</TableCell>
               <TableCell>{user.email}</TableCell>
-              <TableCell>
+              <TableCell
+                className={`cursor-pointer ${
+                  user.cardStatus !== false ? "cursor-not-allowed" : ""
+                }`}
+                onClick={
+                  user.cardStatus === false
+                    ? () => handleCardStatusClick(user)
+                    : undefined
+                }
+              >
                 {user.cardStatus === true && (
                   <p className="text-lime-500 px-4 py-2 bg-lime-100 rounded-2xl text-center">
                     Active
