@@ -1,11 +1,15 @@
+import DashboradContent from "@/components/admin/DashboardContent";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+
 export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <div>
-      <main> {children}</main>
-    </div>
+    <SidebarProvider>
+      <DashboradContent />
+      <main>{children}</main>
+    </SidebarProvider>
   );
 }
