@@ -1,5 +1,3 @@
-import Navbar from "@/components/landingPage/navbar/Navbar";
-
 export default function Layout({
   children,
 }: Readonly<{
@@ -7,7 +5,6 @@ export default function Layout({
 }>) {
   return (
     <div>
-      <Navbar />
       <main> {children}</main>
     </div>
   );
