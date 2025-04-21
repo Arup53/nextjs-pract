@@ -18,6 +18,8 @@ export interface User {
   email: string | null;
   totalTransactionAmount: number;
   cardStatus: boolean | string;
+  cardHolderId: string; // ← Add this
+  cardId: string;
   createdAt: string; // ISO date string
 }
 
@@ -55,9 +57,29 @@ const DetailsTable = () => {
     };
   }, []);
 
-  const handleCardStatusClick = (user: User) => {
-    console.log("Clicked user:", user.name);
-    // or navigate, show modal, etc.
+  const handleCardStatusClick = async (user: User) => {
+    try {
+      const payload = {
+        cardHolderId: user.cardHolderId,
+        cardId: user.cardId,
+      };
+
+      const response = await axios.put(
+        "http://localhost:3001/admin/approve",
+        payload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Approval successful:", response.data);
+      // Optional: refresh users or show a success toast
+    } catch (error) {
+      console.error("Error during approval:", error);
+      // Optional: show error toast or message
+    }
   };
 
   console.log(users);
