@@ -5,10 +5,8 @@ import { useEffect, useState } from "react";
 const sections = [
   { id: "corporate-cards", label: "Corporate Cards" },
   { id: "invoice-management", label: "Invoice Management" },
-  { id: "petty-cash", label: "Petty Cash Management" },
+
   { id: "reimbursements", label: "T&E Reimbursements" },
-  { id: "procure-to-pay", label: "Procure to Pay" },
-  { id: "insights", label: "Real time insights" },
 ];
 
 export default function ScrollSpyNav() {

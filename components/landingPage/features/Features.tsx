@@ -25,15 +25,28 @@ const Features = () => {
             feature2="Skip sharing OTPs"
             img="/card-1.jpg"
           />
-          <Section id="invoice-management" title="Invoice Management" />
-          <Section id="petty-cash" title="Petty Cash Management" />
-          <Section id="reimbursements" title="T&E Reimbursements" />
-          <Section id="procure-to-pay" title="Procure to Pay" />
-          <Section id="insights" title="Real time insights" />
+
+          <FeatureCard
+            id="invoice-management"
+            title="Invoice Management"
+            feature1="Improve your vendor relationships and reduce duplicate payments by maintaining a centralized place for all your bills, approvals, and payments."
+            feature2="Make local or international payments via one-click wire transfer to 140+ currencies or by using Pluto corporate cards."
+            img="/card-2.jpg"
+          />
+          <FeatureCard
+            id="reimbursements"
+            title="T&E Reimbursements"
+            feature1="Allow your employees to submit reimbursement requests with ease."
+            feature2="Get the right approvals in place with custom approval workflows."
+            img="/card-3.jpg"
+          />
         </main>
       </div>
     </div>
   );
 };
-
+// Improve your vendor relationships and reduce duplicate payments by maintaining a centralized place for all your bills, approvals, and payments.
+// Make local or international payments via one-click wire transfer to 140+ currencies or by using Pluto corporate cards.
+// Allow your employees to submit reimbursement requests with ease.
+// Get the right approvals in place with custom approval workflows.
 export default Features;
