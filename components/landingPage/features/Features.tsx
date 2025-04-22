@@ -1,6 +1,5 @@
 import FeatureCard from "./FeatureCard";
 import ScrollSpyNav from "./ScrollSpyNav";
-import Section from "./Section";
 
 const Features = () => {
   return (

@@ -5,10 +5,10 @@ const Navbar = () => {
   return (
     <>
       <div className="flex justify-center items-center">
-        <div className=" flex justify-between items-center">
+        {/* <div className=" flex justify-between items-center">
           <Link href={"/login"}>login</Link>
           <Link href={"/dashboard"}>Dashboard</Link>
-        </div>
+        </div> */}
       </div>
       <nav className="w-full flex justify-between items-center py-4 px-6 md:px-12 bg-black">
         <div className="flex items-center">
@@ -35,13 +35,13 @@ const Navbar = () => {
             variant="ghost"
             className="text-white hover:bg-white/10 rounded-md text-sm"
           >
-            Book a Demo
+            <Link href={"/login"}>Login</Link>
           </Button>
           <Button
             variant="ghost"
             className="text-white hover:bg-white/10 rounded-md text-sm"
           >
-            Login
+            <Link href={"/dashboard"}>Dashboard</Link>
           </Button>
           <Button className="bg-emerald-400 hover:bg-emerald-500 text-black font-medium rounded-md text-sm">
             Sign Up for Free
