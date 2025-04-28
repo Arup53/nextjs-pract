@@ -41,6 +41,12 @@ const Navbar = () => {
             variant="ghost"
             className="text-white hover:bg-white/10 rounded-md text-sm"
           >
+            <Link href={"/upload"}>Upload</Link>
+          </Button>
+          <Button
+            variant="ghost"
+            className="text-white hover:bg-white/10 rounded-md text-sm"
+          >
             <Link href={"/dashboard"}>Dashboard</Link>
           </Button>
           <Button className="bg-emerald-400 hover:bg-emerald-500 text-black font-medium rounded-md text-sm">
