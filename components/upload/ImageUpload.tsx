@@ -7,18 +7,34 @@ import { useState } from "react";
 
 export default function ImageUpload() {
   const [imageUrl, setImageUrl] = useState<string>("");
-  const [invoiceResponse, setInvoiceResponse] = useState();
-  const uploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [invoiceResponse, setInvoiceResponse] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [dragActive, setDragActive] = useState<boolean>(false);
+
+  const uploadImage = async (file: File) => {
     try {
-      if (!e.target.files || e.target.files.length === 0) {
-        throw new Error("You must select an image to upload.");
+      setLoading(true);
+      setError(null);
+
+      // Validate file type
+      const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+      if (!validTypes.includes(file.type)) {
+        throw new Error(
+          "File type not supported. Please upload JPG, PNG, GIF, or WEBP."
+        );
       }
 
-      const file = e.target.files[0];
+      // Validate file size (5MB max)
+      const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+      if (file.size > maxSize) {
+        throw new Error("File size exceeds 5MB limit.");
+      }
 
+      // Upload to Supabase
       const { data: image, error: uploadError } = await supabase.storage
         .from("user-uploads")
-        .upload(`${file.name}`, file);
+        .upload(`${Date.now()}-${file.name}`, file);
 
       if (uploadError) {
         throw uploadError;
@@ -27,41 +43,57 @@ export default function ImageUpload() {
       if (image) {
         console.log("Uploaded:", image);
 
-        // Now get the public URL
+        // Get the public URL
         const { data: imgUrl } = supabase.storage
-          .from("user-uploads") // notice: bucket name should match
-          .getPublicUrl(`${file.name}`);
+          .from("user-uploads")
+          .getPublicUrl(`${image.path}`);
 
         if (imgUrl) {
           setImageUrl(imgUrl.publicUrl);
-          // create axios request
 
+          // Process with backend API
           const response = await axios.get("http://localhost:3001/groqTest", {
             params: {
-              img: imgUrl.publicUrl, // Pass the image URL to the backend API
+              img: imgUrl.publicUrl,
             },
           });
+
           setInvoiceResponse(response.data);
         }
       }
     } catch (error) {
-      console.log(error);
+      console.error("Upload error:", error);
+      setError(
+        error instanceof Error ? error.message : "An unknown error occurred"
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
   console.log(imageUrl);
   console.log(invoiceResponse);
   return (
-    <main className="flex min-h-screen flex-col items-center bg-gray-800 text-gray-200 p-24">
-      <h1 className="text-5xl font-bold">NextJs & Supabase Storage</h1>
+    <main className="flex min-h-screen flex-col items-center  text-gray-200 p-24">
+      <h1 className="text-5xl font-bold">Image</h1>
 
-      <div className="mt-5">
+      <div className="mt-5 w-full max-w-md">
+        <label
+          htmlFor="file-upload"
+          className="block text-center text-gray-400 mb-4 cursor-pointer"
+        >
+          <div className="p-5  hover:bg-gray-600 rounded-lg border-2 bg-black text-white">
+            <span className="text-lg">Click or Drag to Upload Image</span>
+          </div>
+        </label>
         <input
+          id="file-upload"
           type="file"
           onChange={uploadImage}
-          className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+          className="hidden"
         />
       </div>
+
       <div>
         {imageUrl && (
           <Image
@@ -69,7 +101,7 @@ export default function ImageUpload() {
             alt="Uploaded Image"
             width={300}
             height={300}
-            className="rounded-lg border border-gray-300"
+            className="rounded-lg border border-gray-300 mt-6"
           />
         )}
       </div>
