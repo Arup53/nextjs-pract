@@ -7,6 +7,7 @@ import { useState } from "react";
 
 export default function ImageUpload() {
   const [imageUrl, setImageUrl] = useState<string>("");
+  const [invoiceResponse, setInvoiceResponse] = useState();
   const uploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
       if (!e.target.files || e.target.files.length === 0) {
@@ -40,6 +41,7 @@ export default function ImageUpload() {
               img: imgUrl.publicUrl, // Pass the image URL to the backend API
             },
           });
+          setInvoiceResponse(response.data);
         }
       }
     } catch (error) {
@@ -48,6 +50,7 @@ export default function ImageUpload() {
   };
 
   console.log(imageUrl);
+  console.log(invoiceResponse);
   return (
     <main className="flex min-h-screen flex-col items-center bg-gray-800 text-gray-200 p-24">
       <h1 className="text-5xl font-bold">NextJs & Supabase Storage</h1>
