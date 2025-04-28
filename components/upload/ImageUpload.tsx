@@ -101,37 +101,98 @@ export default function ImageUpload() {
   console.log(imageUrl);
   console.log(invoiceResponse);
   return (
-    <main className="flex min-h-screen flex-col items-center  text-gray-200 p-24">
-      <h1 className="text-5xl font-bold">Image</h1>
+    <main className="flex min-h-screen flex-col items-center text-gray-200 p-24">
+      <h1 className="text-2xl text-black font-bold mb-6">Image Upload</h1>
 
-      <div className="mt-5 w-full max-w-md">
-        <label
-          htmlFor="file-upload"
-          className="block text-center text-gray-400 mb-4 cursor-pointer"
+      <div className="mt-2 w-full max-w-md">
+        <div
+          className={`p-8 border-2 border-dashed rounded-lg text-center cursor-pointer transition-colors
+          ${
+            dragActive
+              ? "bg-gray-700 border-blue-400"
+              : "bg-black hover:bg-gray-900 border-gray-600"
+          }`}
+          onDragEnter={handleDrag}
+          onDragLeave={handleDrag}
+          onDragOver={handleDrag}
+          onDrop={handleDrop}
+          onClick={() => document.getElementById("file-upload")?.click()}
         >
-          <div className="p-5  hover:bg-gray-600 rounded-lg border-2 bg-black text-white">
-            <span className="text-lg">Click or Drag to Upload Image</span>
+          <div className="flex flex-col items-center">
+            <svg
+              className="w-10 h-10 mb-3 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+              />
+            </svg>
+            <p className="mb-2 text-sm text-gray-300">
+              <span className="font-semibold">Click to upload</span> or drag and
+              drop
+            </p>
+            <p className="text-xs text-gray-400">
+              JPG, PNG, GIF or WEBP (MAX. 5MB)
+            </p>
           </div>
-        </label>
+        </div>
         <input
           id="file-upload"
           type="file"
-          onChange={uploadImage}
+          accept="image/jpeg,image/png,image/gif,image/webp"
+          onChange={handleFileChange}
           className="hidden"
         />
       </div>
 
-      <div>
-        {imageUrl && (
-          <Image
-            src={imageUrl}
-            alt="Uploaded Image"
-            width={300}
-            height={300}
-            className="rounded-lg border border-gray-300 mt-6"
-          />
-        )}
-      </div>
+      {loading && (
+        <div className="mt-6 text-black">
+          <div className="flex items-center justify-center">
+            <div className="w-6 h-6 border-2 border-gray-600 border-t-blue-600 rounded-full animate-spin mr-2" />
+            <span>Processing...</span>
+          </div>
+        </div>
+      )}
+
+      {error && (
+        <div className="mt-6 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+          {error}
+        </div>
+      )}
+
+      {imageUrl && !loading && (
+        <div className="mt-6">
+          <h2 className="text-lg text-black font-medium mb-2">
+            Uploaded Image
+          </h2>
+          <div className="border border-gray-300 rounded-lg overflow-hidden">
+            <Image
+              src={imageUrl}
+              alt="Uploaded Image"
+              width={300}
+              height={300}
+              className="object-contain"
+            />
+          </div>
+        </div>
+      )}
+
+      {invoiceResponse && !loading && (
+        <div className="mt-6 w-full max-w-md">
+          <h2 className="text-lg text-black font-medium mb-2">
+            Processing Results
+          </h2>
+          <pre className="bg-gray-800 p-4 rounded-lg overflow-x-auto text-sm">
+            {JSON.stringify(invoiceResponse, null, 2)}
+          </pre>
+        </div>
+      )}
     </main>
   );
 }
