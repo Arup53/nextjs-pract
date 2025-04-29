@@ -32,8 +32,8 @@ const items = [
     icon: Inbox,
   },
   {
-    title: "Search",
-    url: "#",
+    title: "Upload Invoice",
+    url: "/dashboard/user/invoiceUpload",
     icon: Search,
   },
   {
