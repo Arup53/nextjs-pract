@@ -2,10 +2,12 @@
 
 import { supabase } from "@/lib/supabaseClient";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
 
 export default function ImageUpload() {
+  const { data: session } = useSession();
   const [imageUrl, setImageUrl] = useState<string>("");
   const [invoiceResponse, setInvoiceResponse] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -55,6 +57,9 @@ export default function ImageUpload() {
           const response = await axios.get("http://localhost:3001/groqTest", {
             params: {
               img: imgUrl.publicUrl,
+            },
+            headers: {
+              Authorization: `Bearer ${session?.accessToken}`,
             },
           });
 
