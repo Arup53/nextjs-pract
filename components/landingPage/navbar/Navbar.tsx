@@ -35,7 +35,7 @@ const Navbar = () => {
             variant="ghost"
             className="text-white hover:bg-white/10 rounded-md text-sm"
           >
-            <Link href={"/login"}>Login</Link>
+            <Link href={"/auth/login"}>Login</Link>
           </Button>
           <Button
             variant="ghost"
