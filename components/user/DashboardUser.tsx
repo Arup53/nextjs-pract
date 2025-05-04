@@ -37,8 +37,8 @@ const items = [
     icon: Search,
   },
   {
-    title: "Settings",
-    url: "#",
+    title: "Make a Card Transcation",
+    url: "/dashboard/user/cardTransation",
     icon: Settings,
   },
 ];

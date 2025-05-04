@@ -7,6 +7,7 @@ import axios from "axios";
 const Transaction = () => {
   const { data: session } = useSession();
   const [amount, setAmount] = useState<number | "">("");
+  const [payto, setpayto] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -53,7 +54,7 @@ const Transaction = () => {
     e.preventDefault();
     if (!amount || !session?.accessToken || !cardDetails?.cardDetails?.card_id)
       return;
-
+    console.log(payto);
     setLoading(true);
     setMessage("");
 
@@ -86,6 +87,21 @@ const Transaction = () => {
       <h2 className="text-xl font-semibold mb-4">Submit Transaction</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
+          <label
+            htmlFor="payto"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Pay To
+          </label>
+          <input
+            type="text"
+            id="payto"
+            name="payto"
+            value={payto}
+            onChange={(e) => setpayto(e.target.value)}
+            required
+            className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+          />
           <label
             htmlFor="amount"
             className="block text-sm font-medium text-gray-700"
