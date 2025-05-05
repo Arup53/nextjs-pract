@@ -13,7 +13,7 @@ const handler = NextAuth({
     maxAge: 60 * 60 * 24 * 365 * 2,
   },
   pages: {
-    signIn: "/auth/login", // 👈 Custom login page
+    signIn: "/auth/login",
   },
   callbacks: {
     async jwt({ token, user, account, profile }) {
