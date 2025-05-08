@@ -44,8 +44,5 @@ const Features = () => {
     </div>
   );
 };
-// Improve your vendor relationships and reduce duplicate payments by maintaining a centralized place for all your bills, approvals, and payments.
-// Make local or international payments via one-click wire transfer to 140+ currencies or by using Pluto corporate cards.
-// Allow your employees to submit reimbursement requests with ease.
-// Get the right approvals in place with custom approval workflows.
+
 export default Features;
