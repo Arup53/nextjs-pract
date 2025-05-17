@@ -85,9 +85,8 @@
 
 .radial-yellow-bg {
   background: radial-gradient(
-    circle at top center,
-    #2632f2 0%,
-
+    circle at bottom center,
+    #ffe0c1 0%,
     #ffffff 30%,
     #ffffff 40%,
     #ffffff 80%
