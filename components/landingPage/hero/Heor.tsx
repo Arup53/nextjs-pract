@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/moving-border";
 
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
@@ -27,6 +27,11 @@ const Hero = () => {
     // Cleanup function
     return () => tl.kill();
   }, []);
+
+  const handleClick = () => {
+    console.log("Hello there");
+  };
+
   return (
     <div className="flex items-center justify-center w-full h-screen overflow-hidden ">
       <div
@@ -68,6 +73,13 @@ const Hero = () => {
             </svg>
             GitHub
           </button>
+          <Button
+            borderRadius="1.75rem"
+            className="bg-white dark:bg-slate-900 text-black dark:text-white border-neutral-200 dark:border-slate-800"
+            onClick={handleClick}
+          >
+            Borders are cool
+          </Button>
         </div>
       </div>
     </div>
