@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/moving-border";
+import { useRouter } from "next/navigation";
 
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 
 const Hero = () => {
   const gradientRef = useRef(null);
-  const glowRef = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
     const gradient = gradientRef.current;
@@ -58,7 +59,7 @@ const Hero = () => {
           <Button
             borderRadius="1.75rem"
             className="bg-white dark:bg-slate-900 text-black dark:text-white border-neutral-200 dark:border-slate-800"
-            onClick={handleClick}
+            onClick={() => router.push("/dashboard")}
           >
             Get Started
           </Button>

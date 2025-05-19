@@ -10,7 +10,7 @@ const Navbar = () => {
           <Link href={"/dashboard"}>Dashboard</Link>
         </div> */}
       </div>
-      <nav className="w-full flex justify-between items-center py-4 px-6 md:px-12 bg-black ">
+      <nav className="w-[60%] mx-auto flex justify-between items-center py-4 px-6 md:px-12 bg-black rounded-3xl md:mt-2 ">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <svg
@@ -31,7 +31,7 @@ const Navbar = () => {
         </div>
 
         <div className="hidden lg:flex items-center space-x-4">
-          <Button
+          {/* <Button
             variant="ghost"
             className="text-white hover:bg-white/10 rounded-md text-sm"
           >
@@ -42,15 +42,12 @@ const Navbar = () => {
             className="text-white hover:bg-white/10 rounded-md text-sm"
           >
             <Link href={"/upload"}>Upload</Link>
-          </Button>
+          </Button> */}
           <Button
             variant="ghost"
             className="text-white hover:bg-white/10 rounded-md text-sm"
           >
             <Link href={"/dashboard"}>Dashboard</Link>
-          </Button>
-          <Button className="bg-emerald-400 hover:bg-emerald-500 text-black font-medium rounded-md text-sm">
-            Sign Up for Free
           </Button>
         </div>
 
