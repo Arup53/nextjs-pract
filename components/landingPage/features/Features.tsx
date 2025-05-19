@@ -3,7 +3,7 @@ import ScrollSpyNav from "./ScrollSpyNav";
 
 const Features = () => {
   return (
-    <div className=" my-24 bg-stone-100 py-12  ">
+    <div className="bg-stone-100 py-12">
       <div className="max-w-xl mx-auto text-center px-4 py-10">
         <p className="text-2xl font-medium text-black break-words">
           Whether you start with one module or adopt the whole platform, Pluto

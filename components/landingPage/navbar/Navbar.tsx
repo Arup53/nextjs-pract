@@ -10,7 +10,7 @@ const Navbar = () => {
           <Link href={"/dashboard"}>Dashboard</Link>
         </div> */}
       </div>
-      <nav className="w-full flex justify-between items-center py-4 px-6 md:px-12 ">
+      <nav className="w-full flex justify-between items-center py-4 px-6 md:px-12 bg-black ">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <svg
